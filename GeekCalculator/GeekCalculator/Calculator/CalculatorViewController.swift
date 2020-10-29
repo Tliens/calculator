@@ -46,22 +46,16 @@ class CalculatorViewController: RxViewController {
                 state.map { $0.screen }.bind(to: this.resultLabel.rx.text),
                 state.map { $0.sign }.bind(to: this.lastSignLabel.rx.text)
             ]
-
             let events: [Observable<CalculatorCommand>] = [
                     this.allClearButton.rx.tap.map { _ in .clear },
-
                     this.changeSignButton.rx.tap.map { _ in .changeSign },
                     this.percentButton.rx.tap.map { _ in .percent },
-
                     this.divideButton.rx.tap.map { _ in .operation(.division) },
                     this.multiplyButton.rx.tap.map { _ in .operation(.multiplication) },
                     this.minusButton.rx.tap.map { _ in .operation(.subtraction) },
                     this.plusButton.rx.tap.map { _ in .operation(.addition) },
-
                     this.equalButton.rx.tap.map { _ in .equal },
-
                     this.dotButton.rx.tap.map { _ in  .addDot },
-
                     this.zeroButton.rx.tap.map { _ in .addNumber("0") },
                     this.oneButton.rx.tap.map { _ in .addNumber("1") },
                     this.twoButton.rx.tap.map { _ in .addNumber("2") },
